@@ -1,0 +1,20 @@
+/* components/menu/single/single.wxss */
+@import '/style/common.wxss';
+@import '/style/menu-com.wxss';
+.top-img {
+  width: 750rpx;
+  height: 570rpx;
+  display: block;
+}
+
+.combo-name {
+  color: #c8102e;
+}
+
+.top-desc {
+  background-color: #fff;
+}
+
+.tips {
+  color: #542d2e;
+}

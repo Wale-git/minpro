@@ -1,0 +1,37 @@
+.bean-wrap {
+  will-change: transform;
+  position: fixed;
+  opacity: 0;
+  /* animation-name: wrap-10; */
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes wrap-10 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-250rpx, 0, 0) } }
+@keyframes wrap-20 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-375rpx, 0, 0) } }
+@keyframes wrap-30 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-300rpx, 0, 0) } }
+@keyframes wrap-40 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-325rpx, 0, 0) } }
+@keyframes wrap-50 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-350rpx, 0, 0) } }
+@keyframes wrap-60 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-475rpx, 0, 0) } }
+@keyframes wrap-70 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-500rpx, 0, 0) } }
+@keyframes wrap-80 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-525rpx, 0, 0) } }
+@keyframes wrap-90 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-550rpx, 0, 0) } }
+@keyframes wrap-100 { 0% { opacity: 1 } 100% { opacity: 1; transform: translate3d(-575rpx, 0, 0) } }
+
+.bean-wrap .bean {
+  will-change: transform;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: #e94f4f;
+  animation: bean 0.5s cubic-bezier(0.39, -.4, 0.83, 0.23) 1;
+}
+
+@keyframes bean {
+  100% {
+    transform: translate3d(0, 120vh, 0);
+  }
+}

@@ -1,0 +1,256 @@
+var imgUrl = 'https://static.timhortons.com.cn/glacier/producmwosg/'
+
+module.exports = {
+  /**
+   * 菜单分类图片地址
+   */
+  classifyImageUrl: function (str) {
+    return imgUrl + str
+  },
+
+  /**
+   * 菜单产品图片地址
+   */
+  dishImageUrl: function (str) {
+    return imgUrl + '/M/' + str
+  },
+
+  /**
+   * 菜单产品详情图片地址
+   */
+  dishBigImageUrl: function (str) {
+    return imgUrl + '/B/' + str
+  },
+
+  /**
+   * 购物车产品图片
+   */
+  cartImageUrl: function (str) {
+    return imgUrl + '/L/' + str
+  },
+
+  /**
+   * 价格展示处理
+   */
+  price: function (number, suffix) {
+    if (number < 0) {
+      return '-' + Number(Math.abs(number) / 100 || 0).toFixed(suffix || 1)
+    } else {
+      return Number(number / 100 || 0).toFixed(suffix || 2)
+    }
+  },
+
+  /**
+   * 价格处理
+   */
+  calPrice: function (num, suffix) {
+    if (num < 0) {
+      return '-' + Number(Math.abs(num) / 100).toFixed(suffix || 1)
+    } else {
+      return Number(num / 100).toFixed(suffix || 1)
+    }
+  },
+  /**
+   * 过滤文字中的D|DN 等开头的文字
+   */
+  trimD: function (str) {
+    if (str) {
+      return str.replace(getRegExp("(^D(B|N|YL)?)|P|N|^C|^YL"), '')
+    }
+  },
+
+  /**
+   * 设置电话掩码
+   */
+  phoneMask: function(phone){
+    if (phone) {
+      return phone.replace(getRegExp("(\d{3}).*(\d{4})"), '$1****$2')
+    }
+    return ""
+  },
+
+  /**
+  * 日期时间格式化
+  */
+  formatDate: function (dt, fmt) {
+    if (!dt) dt = 0
+    if (!fmt) fmt = 'yy-MM-dd'
+    dt = Number(dt)
+    dt = getDate(dt)
+    var keys = ['M+','d+','h+', 'm+', 's+','q+','S']
+    var vals = [
+      dt.getMonth() + 1, //月份 
+      dt.getDate(), //日 
+      dt.getHours(), //小时 
+      dt.getMinutes(), //分 
+      dt.getSeconds(), //秒 
+      Math.floor((dt.getMonth() + 3) / 3),
+      dt.getMilliseconds() //毫秒
+    ]
+    var reg = getRegExp("(y+)")
+    if (reg.test(fmt)) {
+      var m = fmt.match(reg)
+      fmt = fmt.replace(m[1], (dt.getFullYear() + "").substring(4 - m[1].length), m[1].length-1)
+    }
+    for (var j = 0; j < keys.length; j++) {
+      var r = getRegExp("(" + keys[j] + ")")
+      if (r.test(fmt)) {
+        var match = fmt.match(r)
+        fmt = fmt.replace(match[1], match[1].length == 1 ? vals[j] : ("00" + vals[j]).substring(("" + vals[j]).length, vals[j].length))
+      }
+    }
+    return fmt
+  },
+
+  /**
+   * 处理详情页面产品介绍的换行问题
+   */
+  dealBr: function (descCn = '') {
+    return descCn.replace(getRegExp("<br>", 'g'), '\n')
+  },
+
+  /**
+   * 是否已使用优惠券
+   */
+  isUsed: function (activityCode, usedCode) {
+    var used = false
+    usedCode && usedCode.forEach(function (item) {
+      if (activityCode && activityCode.indexOf(item) !== -1) {
+        used = true
+      }
+    })
+    return used
+  },
+
+  /**
+   * 图片地址处理
+   */
+  imgUrl: function (url) {
+    return imgUrl + 'img//' + url
+  },
+
+  /**
+   * 默认图片
+   */
+  defImg: function () {
+    return imgUrl + 'images/default.jpg'
+  },
+  /**
+   * 格式化距离
+   */
+  formatNum: function (distance) {
+    if (distance) {
+      distance = distance / 1000
+      return distance.toFixed(2)
+    }
+    return distance
+  },
+  /**
+   * 汉字转换为code 如：南=21335
+   */
+  charCodeAt: function (str) {
+    return str.charCodeAt(0)
+  },
+  /**
+   * 订单状态转化
+   */
+  orderStatus: function (iosStatus) {
+    if (iosStatus === 1) {
+      return '待取餐'
+    } else if (iosStatus === 5) {
+      return '已取消'
+    } else if (iosStatus === 99) {
+      return '待支付'
+    } else {
+      return '订单已完成'
+    }
+  },
+
+  /**
+   * 距离格式化
+   */
+  fmtDistant: function (dis) {
+    var distance = 0
+    dis < 1000 ? (distance = dis.toFixed(0) + 'm') : (distance = (dis / 1000).toFixed(1) + 'km')
+    return distance
+  },
+
+  /**
+   * 订单号格式化
+   */
+  orderNumberFmt: function (orderNo) {
+    if (orderNo){
+      return (
+        orderNo.slice(0, 4) +
+        ' ' +
+        orderNo.slice(4, 8) +
+        ' ' +
+        orderNo.slice(8, 12) +
+        ' ' +
+        orderNo.slice(12, 16) +
+        ' ' +
+        orderNo.slice(16, 19)
+      )
+    } else {
+      return ''
+    }
+  },
+
+  /**
+   * 手机号格式化
+   */
+  formatPhone: function (phone) {
+    return (
+      phone.slice(0, 3) + ' ' + phone.slice(3, 7) + ' ' + phone.slice(7, 11)
+    )
+  },
+
+  /**
+   * 返回订单状态描述
+   */
+  statusText: function (status, item) {
+    var text = ''
+    if (status){
+      if (status.iosStatus === 0 && item.payTransactionNo !== null) {
+        text = '待签到'
+      } else if (status.iosStatus == 97) {
+        text = '退单成功'
+      } else if (status.iosStatus == 98) {
+        text = '退单失败'
+      } else if (item.posNo !== null) {
+        if (item.bookingType == 1) {
+          text = '签到成功'
+        } else {
+          if (status.kdsStatus){
+            if (status.kdsStatus === 1) {
+              text = '待取餐'
+            } else if (status.kdsStatus === 2) {
+              text = '已完成'
+            } else {
+              text = '下单成功'
+            }
+          } else {
+            text = '备餐中'
+          }
+        }
+      } else {
+        text = '下单中'
+      }
+    }
+
+    return text
+  },
+
+  /**
+   * 多规格 属性图片
+   */
+  propertyIcon: function (property) {
+    var img = ''
+    if (property.isdefault == 'Y' || property.isDefault == 'Y') {
+      img = imgUrl + 'icon/Y/' + property.imgUrl
+    } else {
+      img = imgUrl + 'icon/N/' + property.imgUrl
+    }
+    return img
+  },
+}

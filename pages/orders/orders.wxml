@@ -1,0 +1,48 @@
+<!--pages/orders/orders.wxml-->
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="flex to-home align-items-center justify-content-center" data-idx='2' catchtap='backToPage'>
+  <text>回首页</text>
+  <image src='../../images/home.png'></image>
+</view>
+<scroll-view class="container" scroll-y>
+  <view class="flex no-orders flex-y align-items-center justify-content-center" wx:if="{{!orderList || orderList.length == 0}}">
+    <view>暂无订单</view>
+  </view>
+  <block wx:else>
+    <view class="order-item-area" wx:for="{{orderList}}" wx:for-item="order" wx:key="index" data-orderid='{{order.id}}' bindtap="clickOrder">
+      <view class="order-item">
+        <view class="order-info flex">
+          <text class="order-time flex-1">{{order.orderTimeStr}}</text>
+          <text class="order-status">{{tools.statusText(order.status, order)}}</text>
+        </view>
+        <view class="order-info">订单编号：{{order.id}}</view>
+        <block wx:if="{{order.status.iosStatus === 0 && order.bookingDate !== null && order.payTransactionNo !== null}}">
+          <!-- <view class="order-info">订单编号：{{}} </view> -->
+          <view class="order-info">领取餐厅：{{order.store.storeShowName}}</view>
+          <view class="order-info order-address">{{order.store.address}}</view>
+          <view class="order-btn flex">
+            <view class="order-btn-cancel" catchtap='cancleOrder' data-orderId='{{order.id}}'>取消订单</view>
+            <view class="flex-1"></view>
+            <view class="order-btn-start" catchtap='placeOrder' data-orderId='{{order.id}}'>点我，开始配餐</view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="order-info">取餐编号：{{order.posNo ? order.posNo : ''}}</view>
+          <view class="order-info">领取餐厅：{{order.store.storeShowName}}</view>
+          <view class="order-info flex">
+            <view class="order-address flex-1">{{order.store.address}}</view>
+            <text class="fp" catchtap='goInvoice' wx:if="{{order.store.isInvoiceStore == '1' && order.posNo && (order.status.iosStatus != 97 && order.status.iosStatus != 98)}}" data-orderdetail='{{order}}'>电子发票</text>
+          </view>
+          <view class="order-btn flex">
+            <view class="order-btn-price">￥{{tools.price(order.orderTotal, 2)}}</view>
+            <view class="flex-1"></view>
+            <view class="order-btn-info">
+              <image src="../../images/order-info.png"></image>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<include src="../../common/templates/common.wxml" />

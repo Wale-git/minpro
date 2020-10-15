@@ -1,0 +1,62 @@
+<!--components/menu/combo/combo.wxml-->
+<wxs src="../../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="combo com-fly">
+  <scroll-view scroll-y class="scroll-box flex flex-y" scroll-into-view="{{toView}}">
+    <image id="top-img-1" class="top-img" src="{{tools.dishImageUrl(combo.imageUrl)}}"></image>
+    <view class="top-desc flex flex-y" style="height:{{autoHeight}}rpx;">
+      <view class="combo-name">{{combo.nameCn}}</view>
+      <view class="combo-price">￥{{tools.price(totalMoney)}}</view>
+      <block wx:for="{{combo.condimentRoundList}}" wx:for-item="round" wx:key="index" wx:if="{{!isComboMul}}">
+        <view class="tips">{{round.roundNameCn}}：
+          <text wx:for="{{round.condimentItemList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" wx:if="{{item.isdefault == 'Y'}}">{{item.topMenuCn || item.menuCn}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="mid-box" wx:if="{{!isComboMul}}">
+      <block wx:for="{{combo.condimentRoundList}}" wx:for-item="round" wx:key="index">
+        <view class="classify-name">{{round.roundNameCn}}</view>
+        <view class="flex flex-wrap justify-content-between">
+          <view class="dish-box flex {{item.isdefault == 'Y' ? 'red-bg' : ''}}" wx:for="{{round.condimentItemList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" catchtap='chooseItem'
+          data-index='{{index}}' data-idx='{{idx}}' wx:if="{{!item.hideItem}}">
+            <image class="dish-icon" src="{{tools.dishImageUrl(item.imageUrl)}}"></image>
+            <view class="dish-icon-right flex flex-y justify-content-between flex-1">
+              <text class="dish-name">{{item.menuCn}}</text>
+              <text class="dish-price" wx:if="{{item.plusPrice}}">+{{tools.price(item.plusPrice)}}元</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="mid-box" wx:if="{{isComboMul}}">
+      <block wx:for="{{combomini.condimentRoundList}}" wx:for-item="round" wx:key="index" wx:if="{{index === 0}}">
+        <view class="classify-name">{{round.roundNameCn}}</view>
+        <view class="classify-name-desc">{{combo.descCn}}</view>
+        <view class="flex flex-wrap justify-content-between">
+          <view class="dish-box-mini flex" wx:for="{{round.condimentItemList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx"
+          data-index='{{index}}' data-idx='{{idx}}' wx:if="{{!item.hideItem}}">
+            <image class="dish-icon" src="{{tools.dishImageUrl(item.imageUrl)}}"></image>
+            <view class="dish-icon-right flex flex-y justify-content-between flex-1 red-bg">
+              <text class="dish-name">{{item.menuCn}}</text>
+              <text class="dish-price" wx:if="{{item.plusPrice}}">+{{tools.price(item.plusPrice)}}元</text>
+            </view>
+            <view class="cart-left-mini flex align-items-center">
+              <image class="com-icon" catchtap='minusItem' src="../../../images/cart-minus.png" data-item="{{item}}"></image>
+              <text class="cart-num">{{item.quantity}}</text>
+              <image class="com-icon {{item.quantity >= comboQty ? 'opcity' : ''}}" catchtap='addItem' src="../../../images/cart-add.png" data-item="{{item}}"></image>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="little-cart confirm" catchtap='addToCart'>确认</view>
+  <!-- <view class="little-cart flex align-items-center">
+    <view class="cart-left flex align-items-center">
+      <image class="com-icon" catchtap='minusItem' src="../../../images/minus.png"></image>
+      <text class="cart-num">{{count}}</text>
+      <image class="com-icon {{count >= combo.maxQty ? 'opcity' : ''}}" catchtap='addItem' src="../../../images/add.png"></image>
+    </view>
+    <view class="cart-right" catchtap='addToCart'>加入购物车</view>
+  </view> -->
+  <image class="close" catchtap='close' src="../../../images/purple-close.png"></image>
+</view>

@@ -1,0 +1,163 @@
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="top">
+    <!-- <image class="bg" src="../../images/bg-coffee.jpg"></image> -->
+    <!-- 轮播 -->
+    <swiper indicator-dots="{{true}}" autoplay="{{autoplay}}" interval="{{3000}}" class="bg">
+      <block wx:for="{{bannerList}}" wx:for-item="banner" wx:key="index">
+        <swiper-item wx:if="{{banner.bannerType == 2}}">
+          <image class="bg" src="{{tools.classifyImageUrl(banner.imageUrl)}}"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <image class="cancel" src="../../images/cancel.png" bindtap="cancel"></image>
+  </view>
+  <scroll-view class="content" scroll-y>
+    <view class="order-area">
+      <view class="expand flex" bindtap="switchOrderDetail">
+        <image src="../../images/arrow-{{showOrderDetail ? 'up' : 'down'}}.png"></image>
+      </view>
+      <view class="order-title">订单明细</view>
+      
+      <view class="order-detail {{showOrderDetail ? '' : 'maxheight'}}">
+        <block wx:for="{{cartList}}" wx:for-item="items" wx:key="index" wx:if="{{items.promotionType == 0}}">
+          <view class="order-item">{{items.nameCN}} x{{items.quantity}}</view>
+          <!-- 多规格明细 -->
+          <block wx:if="{{items.propertyShowAbbr && items.propertyShowAbbr.length > 0 && showOrderDetail}}" wx:for="{{items.propertyShowAbbr}}" wx:for-item="item" wx:key="idx">
+            <view class="order-item-detail">{{item}}</view>
+          </block>
+          <!-- 套餐明细 -->
+          <block wx:if="{{items.condimentItems && items.condimentItems.length > 0 && showOrderDetail}}" wx:for="{{items.condimentItems}}" wx:for-item="condiItem" wx:key="idx">
+            <view class="order-item-detail">{{condiItem.roundName}}:{{condiItem.nameCN}}</view>
+          </block>
+        </block>
+      </view>
+      <view class="show-more" wx:if="{{showMore}}">点击箭头查看更多</view>
+    </view>
+
+    <view class="order-type flex" wx:if="{{isSelfDelivery}}">
+      <view>
+        <view class="order-type-item1 take-out {{isActive == 2 ? 'selected' : ''}}" bindtap="switchOrderType" data-type="{{2}}">外带
+          <image src="../../images/{{isActive == 2 ? 'selected2' : 'unselected2'}}.png"></image>
+        </view>
+      </view>
+      <view>
+        <view class="order-type-item1 eat-in {{isActive == 3 ? 'selected' : ''}}" bindtap="switchOrderType" data-type="{{3}}">堂食
+          <image src="../../images/{{isActive == 3 ? 'selected2' : 'unselected2'}}.png"></image>
+        </view>
+      </view>
+      <view>
+        <view class="order-type-item1 eat-in {{isActive == 1 ? 'selected' : ''}}" bindtap="switchOrderType" data-type="{{1}}">外送
+          <image src="../../images/{{isActive == 1 ? 'selected2' : 'unselected2'}}.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="order-type flex" wx:if="{{!isSelfDelivery}}">
+      <view class="flex-1">
+        <view class="order-type-item take-out {{isActive == 2 ? 'selected' : ''}}" bindtap="switchOrderType" data-type="{{2}}">外带
+          <image src="../../images/{{isActive == 2 ? 'selected2' : 'unselected2'}}.png"></image>
+        </view>
+      </view>
+      <view class="flex-1">
+        <view class="order-type-item eat-in {{isActive == 3 ? 'selected' : ''}}" bindtap="switchOrderType" data-type="{{3}}">堂食
+          <image src="../../images/{{isActive == 3 ? 'selected2' : 'unselected2'}}.png"></image>
+        </view>
+      </view>
+    </view>
+    <!--环保 开始 -->
+    <view class="sale-area" wx:if="{{showHb}}">
+      <view class="sale2">
+        <view class="sale-item2">
+          <text class="text">支持环保，本店不主动提供一次性餐具</text>
+        </view>  
+        <view class="sale-detail2">
+          <view class="sale-item2" bindtap="hbSelect">
+            <image src="../../images/{{hbFlag === 9027 ? 'selected' : 'unselected2'}}.png"></image>
+          </view>
+        </view>
+        <view class="sale-area-tip" wx:if="{{showHbTip}}">
+          <text class="text1">若您需要餐具,请向服务员索取</text>
+          <image class="closs" bindtap="cancelTip" src="../../images/close_grey@2x.png"></image>
+      </view>
+      </view>
+      <!--环保 结束 -->
+
+      <!--外送信息 结束 -->
+      <view class="sale" bindtap="clickDelivery" wx:if="{{showWs}}">
+        <text>外送信息</text>
+        <image class="expand" src="../../images/arrow-{{showDelivery ? 'up' : 'down'}}.png"></image>
+      </view>
+      <view class="sale-detail1" wx:if="{{showDelivery && showWs}}">
+        <view class="address" wx:if="{{!addDelivery}}">
+          <view class="sale-item1 text">
+            <text>{{deliveryInfo.userName}} {{deliveryInfo.phone}}</text>
+            <text>{{deliveryInfo.address + deliveryInfo.addressDetail}}</text>
+          </view>
+          <view class="sale-item1 textx">
+            <text class="edit" catchtap='editDelivery'>编辑</text>
+          </view>
+        </view>
+        <view class="address" wx:if="{{addDelivery}}">
+          <view class="sale-item1 textxx">
+            <text class="edit" catchtap='addDelivery'>添加外送信息</text>
+          </view>
+        </view>
+      </view>
+      <!--外送信息 结束 -->
+
+      <view class="sale" bindtap="clickPromotion">
+        <text>本单已享受的优惠（{{promtions.length || 0}}个）</text>
+        <image class="expand" src="../../images/arrow-{{showPromotion ? 'up' : 'down'}}.png"></image>
+      </view>
+      <view class="sale-detail" wx:if="{{showPromotion && promtions.length > 0}}">
+        <view class="sale-item selected" wx:for="{{promtions}}" wx:for-item="items" wx:key="index">
+          <image src="../../images/selected3.png"></image>
+          <text>{{items.nameCN}}</text>
+        </view>
+      </view>
+
+      <view class="sale" bindtap="clickCoupon">
+        <text>可用优惠券（{{commCouponList.length || 0}}张）</text>
+        <image class="expand" src="../../images/arrow-{{showCoupon ? 'up' : 'down'}}.png"></image>
+      </view>
+      <view class="sale-detail" wx:if="{{showCoupon && commCouponList.length > 0}}" >
+        <view class="sale-item {{coupon.isUsed ? 'selected' : ''}}" 
+          wx:for="{{commCouponList}}" wx:for-item="coupon" wx:key="index"
+          catchtap='useCoupon' 
+          data-type="comm" 
+          data-coupon='{{coupon}}' 
+          data-index='{{index}}'>
+          <image src="../../images/{{coupon.isUsed ? 'selected3' : 'unselected3'}}.png"></image>
+          <text>{{coupon.typeName}}</text>
+        </view>
+      </view>
+
+      <view class="sale" bindtap="clickCashCoupon" wx:if="{{cashCouponList.length > 0}}">
+        <text>可用代金券（{{cashCouponList.length || 0}}张）</text>
+        <image class="expand" src="../../images/arrow-{{showCashCoupon ? 'up' : 'down'}}.png"></image>
+      </view>
+       <view class="sale-detail" wx:if="{{showCashCoupon && cashCouponList.length > 0}}" >
+        <view class="sale-item {{coupon.isUsed ? 'selected' : ''}}" 
+          wx:for="{{cashCouponList}}" wx:for-item="coupon" wx:key="index"
+          catchtap='useCoupon' 
+          data-type="cash" 
+          data-coupon='{{coupon}}' 
+          data-index='{{index}}'>
+          <image src="../../images/{{coupon.isUsed ? 'selected3' : 'unselected3'}}.png"></image>
+          <text>{{coupon.typeName}}</text>
+        </view>
+      </view> 
+
+      <view class="sale" wx:if="{{false}}">
+        <text>可用积分</text>
+        <image class="expand" src="../../images/arrow-down.png"></image>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="order-pay" bindtap="pay">支付：￥{{tools.price(cartTotalPrice)}}</view>
+</view>
+<!-- confirm  toast alert -->
+<include src="../../common/templates/common.wxml" />
+<recommend wx:if="{{showRecommend}}" rpvList="{{showRpvList}}" bind:close="recommendClose"></recommend>
+<delivery wx:if="{{showDeliveryFlg}}" rpvList="{{showRpvList}}" deliveryInfo="{{deliveryInfo}}" bind:close="deliveryClose"></delivery>

@@ -1,0 +1,57 @@
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<scroll-view class="container" scroll-y>
+  <view class="bg" bindtap="switchStatus">
+    <image src="../../images/finish-bg.jpg"></image>
+    <view class="flex to-home align-items-center justify-content-center" data-idx='2' catchtap='backToPage'>
+      <text>回首页</text>
+      <image src='../../images/home.png'></image>
+    </view>
+  </view>
+  
+  <view class="order-status flex">
+    <view class="status-img">
+      <image class="wait" src="../../images/order-wait.png" wx:if="{{orderStatus == 0}}"></image>
+      <image class="success" src="../../images/order-success.png" wx:if="{{orderStatus == 1}}"></image>
+      <image class="fail" src="../../images/order-fail.png" wx:if="{{orderStatus == 2}}"></image>
+    </view>
+    <view class="status-desc flex-1">{{orderStatusDesc}}</view>
+  </view>
+
+  <view class="order-desc flex flex-y">
+    <block wx:if="{{orderStatus == 0}}">
+      <text class="order-desc-text" wx:if="{{isConvenienceStore}}">预计等待3-5分钟。</text>
+      <text class="order-desc-text" wx:if="{{!isConvenienceStore}}">您的订单正在下达厨房， </text>
+      <text class="order-desc-text" wx:if="{{!isConvenienceStore}}">请留意您微信的服务通知。</text>
+    </block>
+    <block wx:elif="{{orderStatus == 1}}">
+      <block wx:if="{{!preTimestamp}}">
+        <text class="order-desc-text" wx:if="{{isConvenienceStore}}">预计等待3-5分钟。</text>
+        <text class="order-desc-text" wx:if="{{!isConvenienceStore}}">您的订单正在下达厨房，</text>
+        <text class="order-desc-text" wx:if="{{!isConvenienceStore}}">请留意您微信的服务通知。</text>
+      </block>
+      <block wx:else>
+        <text>查看订单详情，进行签到，</text>
+        <text>我们会为您准备新鲜配置的餐点</text>
+      </block>
+    </block>
+    <block wx:elif="{{orderStatus == 2}}">
+      <text>您的订单下单失败。</text>
+      <text>支付的金额稍后会退回您的账户，请注意查看。</text>
+      <text>如需继续点餐，可以再次尝试或者到柜台处点餐，</text>
+      <text>给您带来不便，敬请谅解。</text>
+    </block>
+  </view>
+  
+  <block wx:if="{{orderStatus == 1}}">
+    <view class="order-detail flex align-items-center justify-content-center">
+      <!-- <text>订单编号：{{sucDetail.id}}</text> -->
+      <view class="pos-num" wx:if="{{sucDetail.posNo}}">取餐编号: {{sucDetail.posNo}}</view>
+      <!-- <text>订单金额：¥{{tools.price(sucDetail.total)}}</text> -->
+      <!-- <text>积分奖励：{{sucDetail.osOrderValue}}</text> -->
+    </view>
+    <view class="order-link" wx:if="{{!cardNo}}" catchtap='register'>注册会员，立即获得本单积分</view>
+    <view class="order-link" bindtap="orderDetail">查看订单详情</view>
+  </block>
+
+  <view class="order-fail-btn" wx:if="{{orderStatus == 2}}" data-idx='1' catchtap='backToPage'>返回菜单</view>
+</scroll-view>

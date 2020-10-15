@@ -1,0 +1,133 @@
+@import '/style/common.wxss';
+.store-confirm {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(85, 45, 45, .6);
+  z-index: 10;
+}
+.store-confirm.show {
+  display: block;
+}
+.store-confirm-block {
+  position: absolute;
+  min-height: 480rpx;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #ffffff;
+}
+.close-block {
+  height: 120rpx;
+  background-color: #552d2d;
+}
+.close-block .img {
+  position: absolute;
+  width: 59rpx;
+  height: 59rpx;
+  top: 30rpx;
+  right: 34rpx;
+}
+.confirm-text {
+  padding-bottom: 20rpx;
+}
+.confirm-text-left {
+  padding:50rpx 20rpx 0 42rpx;
+}
+.confirm-text-1 {
+  height: 34rpx;
+  line-height: 34rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #c8102e;
+}
+.confirm-text-2 {
+  margin-top: 13rpx;
+  height: 23rpx;
+  line-height: 23rpx;
+  font-size: 23rpx;
+  color: #666666;
+}
+.confirm-text-right {
+  padding: 30rpx 33rpx 0 0;
+}
+.confirm-button {
+  width: 200rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  background-color: #c8102e;
+  text-align: center;
+  color: #ffffff;
+  font-size: 29rpx;
+  letter-spacing: 10rpx;
+}
+
+.confirm-choose {
+  margin-top: 17rpx;
+  padding: 10rpx 0;
+  height: 47rpx;
+  line-height: 47rpx;
+  font-size: 37rpx;
+  color: #4c4c4c;
+}
+.confirm-choose.selected {
+  color: #c8102e;
+}
+.confirm-choose-img {
+  padding-left: 44rpx;
+  padding-right: 31rpx;
+}
+.confirm-choose-img .img {
+  width: 47rpx;
+  height: 47rpx;
+}
+.choose-text-1 {
+  padding-right: 18rpx;
+}
+
+.picker {
+  margin: 0 0 20rpx;
+  position: relative;
+  overflow: hidden;
+  height: 250rpx;
+}
+
+.picker-view {
+  margin-top: -100rpx;
+  height: 350rpx;
+  color: #552d2d;
+  font-size: 32rpx;
+}
+.picker-view.hide {
+  display: none;
+}
+
+.picker-indicator {
+  height: 50rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #de7082;
+  border-bottom: 1rpx solid #de7082;
+}
+.picker-item {
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+.picker-hour .picker-item {
+  padding-right: 97rpx;
+  text-align: right;
+}
+.picker-minute .picker-item {
+  padding-left: 97rpx;
+  text-align: left;
+}
+
+.tips {
+  font-size: 22rpx;
+  margin-left: 118rpx;
+  color: #000;
+  opacity: 0.6;
+}

@@ -1,0 +1,27 @@
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="content">
+    <view class="title">
+      <text>推荐商品</text>
+      <image class="img" src="../../images/close.png" bindtap="close"></image>
+    </view>
+    <scroll-view class="product-list" scroll-y>
+      <view class="product-item flex {{rpv.isdefault ? 'selected' : ''}}" wx:for="{{rpvList}}" wx:for-item="rpv" wx:key="index" data-dish="{{rpv}}" data-index='{{index}}' catchtap='chooseItem'>
+        <view class="product-img">
+          <image class="img" src="{{tools.classifyImageUrl('/S/' + rpv.imageUrl)}}"></image>
+        </view>
+        <view class="product-content flex flex-y flex-1">
+          <view class="product-name flex-1">{{rpv.productName}}</view>
+          <view class="product-price">￥{{tools.price(rpv.price, 2)}}<text wx:if="{{rpv.orgPrice && rpv.orgPrice != rpv.price}}" class="yuanj">￥{{tools.price(rpv.orgPrice, 2)}}</text></view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- <view class="more"><image class="img" src="../../images/arrow-down2.png"></image></view> -->
+    <!-- 消息推送 -->
+    <form bindsubmit="confirm" report-submit="{{true}}" >
+      <button formType="submit" class="btn">
+        <view>确认选择{{addedMoney ? '+' + tools.price(addedMoney, 2) + '元' : ''}}</view>
+      </button>
+    </form>
+  </view>
+</view>

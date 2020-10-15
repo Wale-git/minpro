@@ -1,0 +1,2 @@
+<!--pages/invoice/invoice.wxml-->
+<web-view src="{{linkedUrl}}" bindmessage="bindmessage"></web-view>

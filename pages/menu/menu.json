@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "bean": "/components/bean/bean",
+    "single": "/components/menu/single/single",
+    "combo": "/components/menu/combo/combo",
+    "multiple": "/components/menu/multiple/multiple",
+    "shoppingcart": "/components/menu/shoppingcart/shoppingcart"
+  }
+}

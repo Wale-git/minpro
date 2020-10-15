@@ -1,0 +1,21 @@
+<!--components/menu/single/single.wxml-->
+<wxs src="../../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="com-fly">
+  <scroll-view scroll-y class="scroll-box flex flex-y">
+    <image class="top-img" src="{{tools.dishBigImageUrl(singleDish.imageUrl)}}"></image>
+    <view class="top-desc flex flex-y">
+      <view class="combo-name">{{singleDish.nameCn}}</view>
+      <view class="combo-price">￥{{tools.price(singleDish.price * count)}}</view>
+      <!-- <view class="tips">主食：烟熏肌肉</view> -->
+    </view>
+  </scroll-view>
+  <view class="little-cart flex align-items-center">
+    <view class="cart-left flex align-items-center">
+      <image class="com-icon" catchtap='minusItem' src="../../../images/minus.png"></image>
+      <text class="cart-num">{{count}}</text>
+      <image class="com-icon {{count >= singleDish.maxQty ? 'opcity' : ''}}" catchtap='addItem' src="../../../images/add.png"></image>
+    </view>
+    <view class="cart-right" catchtap='addToCart'>加入购物车</view>
+  </view>
+  <image class="close" catchtap='close' src="../../../images/purple-close.png"></image>
+</view>

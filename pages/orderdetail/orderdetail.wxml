@@ -1,0 +1,51 @@
+<!--pages/orderdetail/orderdetail.wxml-->
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="flex to-home align-items-center justify-content-center" data-idx='2' catchtap='backToPage'>
+    <text>回首页</text>
+    <image src='../../images/home.png'></image>
+  </view>
+  <scroll-view class="content-view" scroll-y>
+    <view class="space"></view>
+    
+    <view class="content">
+      <view class="order-time flex">
+        <text class="flex-1">{{orderDetail.orderTimeStr}}</text>
+        <text class="order-status">{{tools.statusText(order.status)}}</text>
+      </view>
+      <view class="order-info">订单编号：{{tools.orderNumberFmt(orderDetail.id)}}</view>
+      <view class="order-info">取餐编号：{{orderDetail.posNo ? orderDetail.posNo : ''}}</view>
+      <view class="order-line"></view>
+      <view class="order-info">下单门店：{{orderDetail.store.storename}}</view>
+      <!-- <view class="order-info">联系电话：{{tools.formatPhone(store.phone)}}</view> -->
+      <view class="order-info">订单类型：{{orderDetail.orderType == 2 ? '外带' : '堂食'}}</view>
+      <view class="order-info">订单状态：{{tools.statusText(orderDetail.status, orderDetail)}}</view> 
+      <!-- <view class="order-info"><text class="fp" catchtap='goInvoice'>电子发票</text></view>  -->
+      <view class="order-line"></view>
+      
+      <view class="order-product-title">已点商品</view>
+      <block wx:for="{{orderDetail.items}}" wx:for-item="item" wx:key="index">
+        <view class="order-item flex">
+          <text class="order-name flex-1">{{item.promotionCode?item.promotionDescEN:item.nameCN}}</text>
+          <text class="order-num">x{{item.quantity}}</text>
+          <text class="order-price">¥{{tools.price(item.realPrice)}}</text>
+        </view>
+        <!-- 多规格明细 -->
+        <block wx:if="{{item.propertyShowAbbr && item.propertyShowAbbr.length > 0}}" wx:for="{{item.propertyShowAbbr}}" wx:for-item="it" wx:key="idx">
+          <view class="order-item-details">{{it}}</view>
+        </block>
+        <!-- 套餐明细 -->
+        <block wx:if="{{item.condimentItems && item.condimentItems.length > 0}}" wx:for="{{item.condimentItems}}" wx:for-item="condiItem" wx:key="idx">
+          <view class="order-item-details">{{condiItem.roundName}}:{{condiItem.nameCN}}</view>
+        </block>
+      </block>
+
+      <view class="order-line"><image class="stamp" src="../../images/stamp.png"></image></view>
+      <view class="order-total">总金额：￥{{tools.price(orderDetail.osOrderValue, 2)}}</view>
+      <view class="order-pay">应付款：￥{{tools.price(orderDetail.orderTotal, 2)}}</view>
+    </view>
+    
+    <view class="space"></view>
+  </scroll-view>
+  <view class="btn" catchtap='close'>关闭</view>
+</view>

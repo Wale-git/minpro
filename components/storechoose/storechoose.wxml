@@ -1,0 +1,44 @@
+<view class="store-confirm show">
+  <view class="store-confirm-block">
+    <view class="close-block">
+      <image class="img" src="../../images/cancel.png" bindtap="close"></image>
+    </view>
+    <view class="confirm-text flex">
+      <view class="confirm-text-left flex-1">
+        <view class="confirm-text-1">{{store.storeShowName}}</view>
+        <view class="confirm-text-2">{{store.address}}</view>
+      </view>
+      <view class="confirm-text-right">
+        <view class="confirm-button" bindtap="goMenu">确定</view>
+      </view>
+    </view>
+
+    <view class="confirm-choose flex {{orderType == 1 ? 'selected' : ''}}" bindtap="chooseOrderType" data-type="{{1}}">
+      <view class="confirm-choose-img">
+        <image class="img" src="../../images/{{orderType == 1 ? 'selected' : 'unselected'}}.png"></image>
+      </view>
+      <view class="choose-text-1">现在点餐</view>
+      <view>支付成功后取餐</view>
+    </view>
+    <view class="confirm-choose flex {{orderType == 2 ? 'selected' : ''}}" bindtap="chooseOrderType" data-type="{{2}}">
+      <view class="confirm-choose-img">
+        <image class="img" src="../../images/{{orderType == 2 ? 'selected' : 'unselected'}}.png"></image>
+      </view>
+      <view class="choose-text-1">预约点餐</view>
+      <view>签单到后取餐</view>
+    </view>
+    <view class="tips">请选择预约时间</view>
+
+    <view class="picker" wx:if="{{orderType == 2}}">
+      <picker-view class="picker-view" indicator-class="picker-indicator" bindchange="pickEnd">
+        <picker-view-column class="picker-hour">
+          <view class="picker-item" wx:for="{{canDoHour}}" wx:key="hour-{{index}}" >{{item}}</view>
+        </picker-view-column>
+        <picker-view-column class="picker-minute">
+          <view class="picker-item" wx:for="{{minutsArr}}" wx:key="minute-{{index}}">{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</view>
+

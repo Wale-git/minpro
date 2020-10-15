@@ -1,0 +1,71 @@
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="menu flex flex-y">
+  <view class="top flex align-items-center">
+    <image class="down-angle" catchtap='changeStore' src="../../images/arrow-right2.png"></image>
+    <view class="store-name" catchtap='changeStore'>{{storeName}}</view>
+    <image class="user" catchtap='goMycenter' src="../../images/menu-person.png"></image>
+  </view>
+  <!-- 轮播 -->
+  <swiper indicator-dots="{{true}}" autoplay="{{autoplay}}" interval="{{3000}}" class="swiper" wx:if="{{showSwiper && showBanner}}">
+    <block wx:for="{{bannerList}}" wx:for-item="banner" wx:key="index">
+      <swiper-item wx:if="{{banner.bannerType == 1}}">
+        <image src="{{tools.classifyImageUrl(banner.imageUrl)}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="body flex flex-1">
+    <!-- 左侧分类 -->
+    <view style="height: calc({{calcHeight}}vh)">
+    <scroll-view class="side-bar" scroll-y scroll-with-animation scroll-into-view="{{classifyId}}">
+      <view class="classify-box flex flex-y align-items-center justify-content-center {{'target-' + index == classifyId ? 'classify-box-bg' : ''}}" wx:for="{{menuData}}" wx:for-item="classify" id="target-{{index}}" wx:key="index" catchtap='classifyEvent' data-index='{{index}}'>
+        <image class="classify-icon" src="{{tools.classifyImageUrl(classify.imageCnUrl)}}"></image>
+        <text>{{classify.nameCn}}</text>
+      </view>
+    </scroll-view>
+    </view>
+    <!-- 右侧菜品 -->
+    <view style="height: calc(90vh);width: 100%;">
+    <scroll-view class="main-box flex flex-y" scroll-y scroll-with-animation scroll-into-view="tar-{{dishId}}" bindscroll="scrollRight">
+      <view class="section" id="tar-{{index}}" wx:for="{{menuData}}" wx:for-item="classify" wx:key="index">
+        <!-- 分类 -->
+        <view class="classify">{{classify.nameCn}}</view>
+        <!-- 分类下产品 -->
+        <block  wx:for="{{classify.dishsList}}" wx:for-item="dish" wx:for-index="idx" wx:key="idx">
+          <view class="items-box flex">
+            <image class="dishs-icon" catchtap='imgEvt' data-dish='{{dish}}' src="{{tools.dishImageUrl(dish.imageUrl)}}"></image>
+            <view class="desc-box flex flex-y flex-1">
+              <text class="dish-name">{{dish.nameCn}}</text>
+              <text class="dish-price">￥{{tools.price(dish.priceTrue)}}<text class="price-tip">元</text></text>
+              <!-- <text class="dish-price">￥{{tools.price(dish.priceTrue)}}<text class="price-tip">元{{(dish.specList.length>0 || dish.propertyClassList.length > 0) ? '起' : ''}}</text></text> -->
+              <text class="dish-name-desc fs_18" wx:if="{{dish.adPrice}}">￥{{tools.price(dish.adPrice)}}<text class="price-tip">元</text></text>
+              <text class="dish-name-desc" wx:if="{{dish.abbr}}">{{dish.abbr}}</text>
+              <image src="../../images/menu-add.png" class="add" data-index="{{idx}}" catchtap='addItems' data-dish='{{dish}}'></image>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    </view>
+    <!-- 消息推送 -->
+    <form class="shoppingcart-box" bindsubmit="shoppingcartEve" report-submit="{{true}}" wx:if="{{cartTotal > 0 || isUseCoupon}}" >
+      <button formType="submit">
+        <view class="shoppingcart-box flex align-items-center justify-content-center">
+          <text>购物车:</text>
+          <text>￥{{tools.price(cartTotal)}}</text>
+        </view>
+      </button>
+    </form>
+  </view>
+</view>
+<!-- 红豆豆 -->
+<bean position="{{position}}"></bean>
+<!-- confirm  toast alert -->
+<include src="../../common/templates/common.wxml" />
+<!-- 单品 -->
+<single class="{{showSingle ? 'flyup mask-black-dialog' : ''}} {{showBlack ? 'black' : ''}}" bind:close="closeSingle" singleDish="{{singleDish}}" catchtouchmove="true"></single>
+<!-- 套餐 -->
+<combo class="{{showCombo ? 'flyup mask-black-dialog' : ''}} {{showBlack ? 'black' : ''}}" bind:close="closeCombo" combo="{{combo}}" bind:showMul="showMul" catchtouchmove="true"></combo>
+<!-- 多规格 -->
+<multiple class="{{showMultiple ? 'flyup mask-black-dialog' : ''}} {{showBlack ? 'black' : ''}}" bind:close="closeMultiple" multiple="{{multiple}}" bind:showMulCombo="showMulCombo" catchtouchmove="true"></multiple>
+<!-- 购物车 -->
+<shoppingcart class="{{showShoppingcart ? 'flyup mask-black-dialog' : ''}} {{showBlack ? 'black' : ''}}" bind:close="closeShoppingcart" cartData="{{cartData}}"></shoppingcart>

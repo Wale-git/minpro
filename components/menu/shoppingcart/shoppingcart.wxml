@@ -1,0 +1,31 @@
+<!--components/menu/shoppingcart/shoppingcart.wxml-->
+<wxs src="../../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="com-fly flex flex-y">
+  <view class="top flex align-items-center">
+    <text class="top-text">购物车</text>
+    <image class="close" catchtap='close' src="../../../images/cancel.png"></image>
+  </view>
+  <scroll-view scroll-y class="midd-box">
+    <view class="flex dish-box" wx:for="{{orderItems}}" wx:for-item="item" wx:key="index">
+      <image class="dish-pic" src="{{tools.cartImageUrl(item.imageName)}}"></image>
+      <view class="flex flex-y">
+        <view class="dish-title">{{item.nameCN}}</view>
+        <view class="dish-price">￥{{tools.price(item.realPrice * item.quantity)}}</view>
+        <view class="dish-tips" wx:if="{{item.propertyShowAbbr && item.propertyShowAbbr.length > 0}}" wx:for="{{item.propertyShowAbbr}}" wx:for-item="pro" wx:key="index">{{pro}}</view>
+        <view class="dish-tips"  wx:if="{{item.condimentItems && item.condimentItems.length > 0}}" wx:for="{{item.condimentItems}}" wx:for-item="condi" wx:key="idx">{{condi.roundName}}: {{condi.nameCN}}</view>
+        <!-- <view class="dish-tips">饮料：现磨咖啡</view> -->
+        <view class="flex align-items-center" wx:if="{{item.promotionType !== 2}}">
+          <image class="com-icon {{item.promotionType == 2 ? 'opacity' : ''}}" data-item='{{item}}' catchtap='changeNum' src="../../../images/cart-minus.png" data-flag='{{false}}'></image>
+          <text class="quantity">{{item.quantity}}</text>
+          <image class="com-icon {{item.promotionType == 2 ? 'opacity' : ''}}" data-item='{{item}}' catchtap='changeNum' src="../../../images/cart-add.png" data-flag='{{true}}'></image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 消息推送 -->
+  <form bindsubmit="goSettle" report-submit="{{true}}">
+    <button formType="submit" class="settlement">
+      <view>结算：￥{{tools.price(total)}}</view>
+    </button>
+  </form>
+</view>

@@ -1,0 +1,70 @@
+<!--components/menu/multiple/multiple.wxml  多规格 -->
+<wxs src="../../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="multiple com-fly">
+  <scroll-view scroll-y class="scroll-box flex flex-y" scroll-into-view="{{toView}}">
+    <image id="top-img" class="top-img" src="{{tools.dishImageUrl(combo.imageUrl)}}"></image>
+    <view class="top-desc flex flex-y">
+      <view class="combo-name">{{multiple.nameCn}}</view>
+      <view class="combo-price" wx:if="{{!hiddenFlag}}">￥{{tools.price(totalPropertyPrice)}}</view>
+      <view class="flex flex-wrap text-box">
+        <!-- 只有属性  -->
+        <!-- <block wx:if="{{propertyClassList && propertyClassList.length > 0}}" wx:for="{{propertyClassList}}" wx:for-item="property" wx:key="index">
+          <view class="tips">{{property.propertyClassName}}：
+            <text wx:for="{{property.propertyValueList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" wx:if="{{item.isdefault == 'Y'}}">{{item.propertyValueName}}</text>
+          </view>
+        </block> -->
+        <!-- 属性规格都有 -->
+        <block wx:if="{{specList && specList.length > 0}}" wx:for="{{specList}}" wx:for-item="spec" wx:key="index">
+          <view wx:for="{{spec}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <view class="tips">{{item.name}}：{{item.value}}</view>
+          </view>
+        </block>
+        <!-- <view class="tips">主食：烟熏肌肉</view> -->
+      </view>
+    </view>
+    <view class="mid-box">
+      <!-- 只有属性 -->
+      <block wx:if="{{propertyClassList && propertyClassList.length > 0}}" wx:for="{{propertyClassList}}" wx:for-item="property" wx:key="index">
+        <view class="classify-name">{{property.propertyClassName}}</view>
+        <view class="classify-box flex flex-wrap">
+          <view wx:for="{{property.propertyValueList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" class="size-box flex flex-y align-items-center justify-content-center {{item.isdefault == 'Y' ? 'choosed-bg' : ''}}" catchtap='chooseProper' data-index='{{index}}' data-idx='{{idx}}'>
+            <image class="img-size" src="{{tools.propertyIcon(item)}}" wx:if="{{item.imgUrl}}"></image>
+            <view>{{item.propertyValueName}}</view>
+          </view>
+        </view>
+      </block>
+      <!-- 规格  杯型，温度 -->
+      <block wx:if="{{specArr && specArr.length > 0}}" wx:for="{{specArr}}" wx:for-item="spec" wx:key="index">
+        <view class="classify-name">{{spec.specClassName}}</view>
+        <view class="classify-box flex flex-wrap">
+          <view wx:for="{{spec.data}}" wx:for-item="specData" wx:for-index="idx" wx:key="idx" class="size-box flex flex-y align-items-center justify-content-center {{specData.isDefault == 'Y' ? 'choosed-bg' : ''}}" catchtap='chooseSpec' data-index='{{index}}' data-idx='{{idx}}'>
+            <image class="img-size" src="{{tools.propertyIcon(specData)}}" wx:if="{{specData.imgUrl}}"></image>
+            <view>{{specData.name}}</view>
+          </view>
+        </view>
+      </block>
+      <!-- 属性 糖分 奶类等 -->
+      <block wx:if="{{convertRule && convertRule.propertyClassList.length > 0}}" wx:for="{{convertRule.propertyClassList}}" wx:for-item="propertyClass" wx:key="index">
+        <view class="classify-name">{{propertyClass.propertyClassName}}</view>
+        <view class="classify-box flex flex-wrap">
+          <view class="size-box flex flex-y align-items-center justify-content-center {{property.isdefault == 'Y' ? 'choosed-bg' : ''}}" wx:for="{{propertyClass.propertyValueList}}" wx:for-item="property" wx:for-index="idx" wx:key="idx" catchtap='chooseProperty' data-proper='{{property.propertyValue}}' data-index='{{index}}' data-idx='{{idx}}' data-id='{{property.id}}' data-propertyClass='{{property.propertyClass}}'>
+            <image class="img-size" src="{{tools.propertyIcon(property)}}" wx:if="{{property.imgUrl}}"></image>
+            <view class="property-name">{{property.propertyValueName}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="little-cart confirm" wx:if="{{hiddenFlag}}" catchtap='confirm'>确认</view>
+  <view class="little-cart flex align-items-center" wx:else>
+    <view class="cart-left flex align-items-center">
+      <image class="com-icon" catchtap='minusItem' src="../../../images/minus.png"></image>
+      <text class="cart-num">{{count}}</text>
+      <image class="com-icon {{count >= multiple.maxQty ? 'opcity' : ''}}" catchtap='addItem' src="../../../images/add.png"></image>
+    </view>
+    <view class="cart-right" catchtap='addToCart'>加入购物车</view>
+  </view>
+  <image  wx:if="{{hiddenFlag}}" class="close" catchtap='confirm' src="../../../images/purple-close.png"></image>
+  <!--套餐可选规格，关闭按钮需跟确认操作保持一致 -->
+  <image  wx:else class="close" catchtap='close' src="../../../images/purple-close.png"></image>
+</view>

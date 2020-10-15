@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<view class="container flex-y">
+  <view class="main flex-1">
+    <image class="bg" src="../../images/home-bg.jpg"></image>
+    <image class="logo" src="../../images/logo2.png"></image>
+    <view class="header">
+      <view class="info-box">
+        <view bindtap="jumpToMine">
+          <text>个人中心</text>
+          <image class="person" src="../../images/person.png"></image>
+        </view>
+      </view>
+      <!-- <view class="little-title">6/30之前，仅限中区广场门店使用</view> -->
+      <view class="title">{{greetings}}{{nickName ? ', ' + nickName + '!' : ''}}</view>
+    </view>
+  </view>
+  <view class="nav flex">
+    <!-- <view class="flex-1" bindtap="startOrder" data-type="2">打包带走</view> -->
+    <!-- <view class="line"></view> -->
+    <!-- <view class="flex-1" bindtap="startOrder" data-type="3">店内就餐</view> -->
+    <view class="flex-1 test" data-type="2" bindtap="formSubmit">
+      <view class='form-box' style='width:{{innnerWidth}}px'>
+        立即点餐
+      </view>                                          
+    </view>
+  </view>
+</view>
+<!-- 跳转注册会员 -->
+<view class='goRegister' style="display:{{showReg ? 'flex' : 'none'}}">
+  <view class="re-confirm">
+    <view class="reconfirm-bd">
+      <view class="reconfirm-text">注册会员即享<font style='color:#c8102e;font-weight:600;'>30</font>元品尝券</view>
+    </view>
+    <view class="reconfirm-ft">
+      <view class="reconfirm-btn" catch:tap="cancel">取消</view>
+      <view class="reconfirm-btn cut-off" catch:tap="register">注册</view>
+    </view>
+  </view>
+</view>
+<!-- 请求授权蒙层 -->
+<include src="../../common/templates/common.wxml" />

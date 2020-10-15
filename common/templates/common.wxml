@@ -1,0 +1,69 @@
+<view class="cart-loading" style="display:{{loadingVisiable ? 'flex' : 'none'}}">
+  <view class="cart-icon"></view>
+</view>
+
+<view class="m-toast {{toastStartTag?'init':''}} {{toastEndTag?'toast-out':''}} ">
+  <view class="toast-content">{{toastText}}</view>
+</view>
+
+<view class="pop-up-bg" style="display:{{showAlert ? 'flex' : 'none'}}">
+  <view class="m-alert">
+    <view class="alert-hd" hidden='{{noTitle}}'>
+      <view class="alert-title">{{alertTitle}}</view>
+      <image class="alert-close-icon" src='../../images/close.png' catch:tap="closeAlert"></image>
+    </view>
+    <view class="alert-bd">
+      <view class="alert-bd-mes">{{alertText}}</view>
+      <view class="alert-bd-mes under" bindtap='copyText' data-text="{{alertText2}}" wx:if="{{alertText2}}">{{alertText2}}</view>
+    </view>
+    <view class="alert-ft">
+      <view class="alert-btn primary" catch:tap="confirmAlert" data-confirm="true">{{alertButton}}</view>
+    </view>
+  </view>
+</view>
+<!--微信授权 开始 -->
+<view class="pop-up-bg" style="display:{{showAlert1 ? 'flex' : 'none'}}">
+  <view class="m-alert">
+    <view class="alert-hd" hidden='{{noTitle}}'>
+      <view class="alert-title">{{alertTitle}}</view>
+    </view>
+    <view class="alert-bd">
+      <view class="alert-bd-mes">{{alertText}}</view>
+    </view>
+    <view class="alert-ft">
+      <view class="alert-btn primary" catch:tap="closeAlert">取消</view>
+      <button class="alert-btn primary cut-off1" open-type='getUserInfo' hover-class='none' bindgetuserinfo="domUserInfo">{{alertButton}}</button>
+    </view>
+  </view>
+</view>
+<view class="pop-up-bg" style="display:{{showAlert2 ? 'flex' : 'none'}}">
+  <view class="m-alert">
+    <view class="alert-hd" hidden='{{noTitle}}'>
+      <view class="alert-title">{{alertTitle}}</view>
+      <image class="alert-close-icon" src='../../images/close.png' catch:tap="closeAlert"></image>
+    </view>
+    <view class="alert-bd">
+      <view class="alert-bd-mes">{{alertText}}</view>
+    </view>
+    <view class="alert-ft">
+      <button class="alert-btn primary" open-type='getPhoneNumber' hover-class='none' bindgetphonenumber="domPhone">{{alertButton}}</button>
+    </view>
+  </view>
+</view>
+<!--微信授权 结束 -->
+<view class="pop-up-bg" style="display:{{showConfirm ? 'flex' : 'none'}}">
+  <view class="m-confirm">
+    <view class="confirm-hd" hidden='{{noTitle}}'>
+      <view class="confirm-title">{{confirmTitle}}</view>
+    </view>
+    <view class="confirm-bd">
+      <view class="{{confirmText2 ? '' : 'confirm-text1'}} ">{{confirmText}}</view>
+      <view class="confirm-text2" wx:if="{{confirmText2}}">{{confirmText2}}</view>
+    </view>
+    <view class="confirm-ft">
+      <view class="confirm-btn default cancel-btn" catch:tap="closeConfirmCancel" wx:if="{{changeConfirm}}">{{cancelButton}}</view>
+      <view class="confirm-btn" catch:tap="closeConfirmCancel" wx:if="{{!changeConfirm}}">{{cancelButton}}</view>
+      <view class="confirm-btn cut-off" catch:tap="closeConfirmOK">{{confirmButton}}</view>
+    </view>
+  </view>
+</view>

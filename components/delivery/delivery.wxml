@@ -1,0 +1,47 @@
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="content">
+    <view class="title">
+      <text>外送信息</text>
+      <image class="img" src="../../images/close.png" bindtap="close"></image>
+    </view>
+    <scroll-view class="product-list" scroll-y>
+      <view class="product-item flex">
+        <view class="product-img">
+          <view class="product-name flex-1">联系人：</view>
+        </view>
+        <view class="product-content">
+          <input class="iinput" placeholder="请输入联系人姓名" bindinput='inputName' value='{{userName}}' ></input>
+        </view>
+      </view>
+      <view class="product-item flex" >
+        <view class="product-img">
+          <view class="product-name flex-1">联系电话：</view>
+        </view>
+        <view class="product-content">
+          <input class="iinput" placeholder="请输入联系电话" bindinput='inputPhone' value='{{phone}}'></input>
+        </view>   
+      </view>
+      <view class="product-item flex">
+        <view class="product-img">
+          <view class="product-name flex-1">外送地址：</view>
+        </view>
+        <view class="product-content">
+          <picker mode="selector" range="{{minutsArr}}" value="{{address}}" bindchange="bindChange"> 
+              <view class="picker">{{address === '' ? '请选择地址' : address}}<image class="expand" src="../../images/arrow-down.png"></image>
+              </view>
+          </picker>
+        </view>   
+      </view>
+      <view class="product-item flex">
+        <view class="product-img">
+          <view class="product-name flex-1">详细地址：</view>
+        </view>
+        <view class="product-content">
+          <input class="iinput" placeholder="请输入详细地址" bindinput='inputAddDetail' value='{{addressDetail}}'></input>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="btn" catchtap='confirm'>确认信息</view>
+  </view>
+</view>

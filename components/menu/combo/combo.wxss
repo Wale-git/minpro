@@ -1,0 +1,70 @@
+/* components/menu/combo/combo.wxss */
+@import '/style/common.wxss';
+@import '/style/menu-com.wxss';
+.confirm {
+  line-height: 108rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 48rpx;
+}
+
+.mid-box {
+  padding: 0 42rpx 208rpx 42rpx;
+}
+
+.classify-name {
+  margin-top: 22rpx;
+  font-size: 40rpx;
+  padding: 15rpx 0;
+}
+
+.classify-name-desc {
+  font-size: 26rpx;
+  padding: 15rpx 0;
+}
+
+.dish-box {
+  height: 125rpx;
+  width: 310rpx;
+  margin: 15rpx 0;
+  background-color: #f8f7f7;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dish-box-mini {
+  height: 125rpx;
+  width: 100%;
+  margin: 15rpx 0;
+  background-color: #fff;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+}
+
+.red-bg {
+  color: #fff !important;
+  border: 1px solid #c8102e !important;
+  background-color: #c8102e !important;
+}
+
+/* 弹屏小车 开始 */
+.cart-left-mini {
+  padding-left: 43rpx;
+  width: 38%;
+}
+
+.dish-icon {
+  height: 125rpx;
+  width: 111rpx;
+}
+
+.dish-icon-right {
+  padding: 20rpx 16rpx 12rpx 16rpx;
+}
+
+.dish-name {
+  font-size: 24rpx;
+}
+
+.dish-price {
+  font-size: 28rpx;
+  color: #e2973b;
+}

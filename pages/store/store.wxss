@@ -1,0 +1,161 @@
+/* pages/store/store.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+}
+.header {
+  height: 120rpx;
+  background-color: #c8102e;
+}
+.picker{
+  display: flex;
+  align-items: center;
+}
+.searchcomm-city {
+  display: flex;
+  height: 80rpx;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dfdfdf;
+  padding-right: 20rpx;
+}
+.cityname{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100rpx;
+  overflow: hidden;
+}
+.Selected_address {
+  display: flex;
+  width: 140rpx;
+  font-size: 32rpx;
+  align-items: center;
+  margin-left: 20rpx;
+  color: #fff;
+}
+.search-icon {
+  display: flex;
+  align-items: center;
+}
+.search-icon image {
+  margin-right: 60rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+.search-text {
+  margin-left: 26rpx;
+  display: flex;
+  align-items: center;
+}
+.search-text input {
+  color: #ffffff;
+  border-bottom: 2rpx solid #d65b6f;
+  width: 100%;
+  padding-left: 8rpx;
+}
+.search-input-place {
+  color: #ffffff;
+}
+.location {
+  width: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.location image {
+  width: 38rpx;
+  height: 56rpx;
+}
+.cancel {
+ display: flex;
+ width: 160rpx;
+ align-items: center;
+ justify-content: center;
+}
+.cancel image {
+  width: 59rpx;
+  height: 59rpx;
+}
+
+.content {
+  height: calc(100% - 120rpx);
+}
+.no-content {
+  height: calc(100% - 120rpx);
+  background-color: #eee;
+}
+.no-line {
+  width: 100%;
+  text-align: center;
+  padding: 40% 0% 5% 0%;
+  color: red;
+  font-size: 30rpx;
+}
+.no-line1 {
+  width: 100%;
+  padding-top: 10rpx;
+  text-align: center;
+}
+.store-list {
+  padding: 25rpx 32rpx 25rpx 36rpx;
+}
+.store-item {
+  height: 165rpx;
+}
+.store-img {
+  width: 162rpx;
+}
+.store-img image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 4rpx;
+}
+.store-info {
+  height: 140rpx;
+  display: flex;
+  align-items: center;
+  color: #552d2d;
+  padding: 0 18rpx 0 12rpx;
+}
+.store-info-box {
+  width: 100%;
+}
+.store-name {
+  line-height: 48rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  width: 80%;
+}
+.store-status {
+  height: 40rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 48rpx;
+  color: #777;
+  width: 140rpx;
+  text-align: right;
+}
+.store-desc {
+ font-size: 22rpx;
+}
+.store-distance {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  width: 140rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+.line-box {
+  display: flex;
+  align-items: center;
+  height: 25rpx;
+}
+.line-box .line {
+  width: 100%;
+  border: 1rpx solid #c5c5c5;
+}

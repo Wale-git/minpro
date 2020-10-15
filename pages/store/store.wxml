@@ -1,0 +1,56 @@
+<!--pages/store/store.wxml-->
+<wxs src="../../common/wxs/tools.wxs" module="tools"></wxs>
+<view class="container flex-y">
+  <view class="header flex">
+    <picker class="picker" mode="selector" range="{{allcities}}" range-key="{{'name'}}" value="index" bindchange="chooseCity"> 
+      <view class='Selected_address'>
+          <view class="cityname">{{cityName == '' ? '请选择':cityName}}</view>
+        <view class='c-triangle '></view>
+      </view>
+    </picker>
+    <view class="location">
+      <image src="../../images/location.png"></image>
+    </view>
+    <view class="search-text flex-1">
+      <input placeholder="请输入搜索关键字" value='{{keyword}}' bindinput='inputStr' placeholder-class="search-input-place"></input>
+    </view>
+    <view class="search-icon">
+      <image src="../../images/search.png"></image>
+    </view>
+  </view>
+  <scroll-view class="content flex-1" scroll-y wx:if="{{showStoreList}}">
+    <view class="store-list">
+      <view class="store-item flex" wx:for="{{storeList}}" wx:for-item="store" wx:key="{{index}}" bindtap="chooseStore" data-store="{{store}}">
+        <view class="store-img">
+          <image src="../../images/logo2.png"></image>
+        </view>
+        <view class="store-content flex-1">
+          <view class="store-info">
+            <view class="store-info-box">
+              <view class="flex">
+                <view class="store-name">{{store.storename}}</view>
+                <view wx:if="{{store.status == '3'}}" class="store-status">繁忙中</view>
+                <view wx:if="{{store.status == '4'}}" class="store-status">未营业</view>
+              </view>
+              <view class="flex">
+                <view class="flex-1 store-desc">{{store.address}}</view>
+                <view class="store-distance" wx:if="{{store.distance}}">{{tools.fmtDistant(store.distance)}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="line-box">
+            <view class="line"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="no-content flex-1" wx:if="{{!showStoreList}}">
+   <view class="no-line"></view>
+    <view class="no-line1">打开手机定位功能</view>
+    <view class="no-line1">或者可以直接搜门店名称</view>
+    <view class="no-line1">就可以找到您附近可微信点单的Tims咯~</view>
+  </view>
+</view>
+<include src="../../common/templates/common.wxml" />
+<storechoose wx:if="{{showChoose}}" bind:close="closeChoose" store="{{store}}"></storechoose>

@@ -1,0 +1,169 @@
+/* pages/menu/menu.wxss */
+.menu {
+  width: 100%;
+  height: 100%;
+}
+
+.top {
+	height: 120rpx;
+	background-color: #c61633;
+  color: #fff;
+  padding-left: 58rpx;
+  padding-right: 38rpx;
+}
+
+.down-angle {
+  height: 52rpx;
+  width: 30rpx;
+  transform: rotate(90deg);
+  margin-right: 22rpx;
+  color: #fff;
+}
+
+.store-name {
+  font-size: 36rpx;
+  width: 348rpx;
+  border-bottom: 1px solid rgba(242, 242, 242, .4);
+  height: 300rpx;
+  line-height: 300rpx;
+}
+
+.user {
+  height: 30rpx;
+  width: 30rpx;
+  color: #fff;
+  margin-left: 230rpx;
+}
+
+.body {
+  background-color: #fff;
+}
+
+.side-bar {
+  width: 174rpx;
+  font-size: 24rpx;
+  height: 100%;
+  border-right: 1px solid #d9d9d9;
+}
+
+.classify-box {
+  width: 174rpx;
+  height: 180rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.classify-box-bg {
+  background-color: rgba(200, 16, 46, 0.2);
+}
+
+.classify-icon {
+  width: 106rpx;
+  height: 96rpx;
+}
+
+.main-box {
+  width: 100%;
+  height: 100%;
+  margin: 0 16rpx;
+}
+
+.classify {
+  font-size: 24rpx;
+  color: #c8102e;
+}
+
+.items-box {
+  width: 100%;
+  padding: 12rpx 0;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.classify {
+  height: 48rpx;
+  line-height: 48rpx;
+}
+
+.dishs-icon {
+  width: 186rpx;
+  height: 186rpx;
+  margin-right: 22rpx;
+}
+
+.desc-box {
+  position: relative;
+}
+
+.dish-name {
+  font-size: 28rpx;
+  color: #c8102e;
+}
+
+.dish-name-desc {
+  font-size: 20rpx;
+  color: #929292;
+  width: 82%;
+}
+
+.fs_18{
+    font-size: 24rpx;
+    text-decoration:line-through;
+    color: #989898;
+}
+
+.dish-price {
+  font-size: 28rpx;
+  color: #ff801e;
+}
+
+.price-tip {
+  font-size: 18rpx;
+}
+
+.add {
+  position: absolute;
+  bottom: 6rpx;
+  right: 24rpx;
+  border: 1px solid #c8102e;
+  height: 64rpx;
+  width: 64rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 56rpx;
+  color: #c8102e;
+  font-size: 60rpx;
+  font-weight: 700;
+}
+
+.shoppingcart-box {
+  min-width: 375rpx;
+  width: auto;
+  height: 106rpx;
+  position: fixed;
+  right: 10rpx;
+  bottom: 15rpx;
+  background-color: #542d2e;
+  color: #fff;
+  font-size: 48rpx;
+  border-radius: 48rpx;
+}
+
+.mask-black-dialog {
+  align-items: flex-end !important;
+}
+
+.section:last-child {
+  padding-bottom: 110rpx;
+}
+
+.swiper {
+  height: 300rpx;
+}
+
+.slide-image {
+  height: 300rpx;
+  width: 100%;
+}
+
+.black {
+  background-color: rgba(0, 0, 0, .4);
+}

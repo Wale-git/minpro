@@ -1,0 +1,89 @@
+/* components/menu/shoppingcart/shoppingcart.wxss */
+@import '/style/common.wxss';
+@import '/style/menu-com.wxss';
+.com-fly {
+  position: relative;
+}
+
+.top {
+  height: 120rpx;
+  width: 100%;
+  background-color: #552d2d;
+  position: relative;
+}
+
+.midd-box {
+  margin: 26rpx 10rpx 26rpx 40rpx;
+  height: 870rpx;
+  width: 94%;
+}
+
+.top-text {
+  color: #fff;
+  margin-left: 48rpx;
+  font-size: 48rpx;
+}
+
+.settlement {
+  position: absolute;
+  bottom: 15rpx;
+  right: 10rpx;
+  background-color: #c8102e;
+  text-align: center;
+  height: 108rpx;
+  min-width: 375rpx;
+  width: auto;
+  line-height: 108rpx;
+  color: #fff;
+  font-size: 48rpx;
+  z-index: 99;
+  border-radius: 48rpx;
+}
+
+.midd-box view:nth-of-type(1) {
+  margin-top: 0 !important;
+}
+
+/* .midd-box :nth-last-child() {
+  margin-bottom: 0 !important;
+} */
+
+.dish-box {
+  padding: 35rpx 0;
+}
+
+.dish-pic {
+  width: 95rpx;
+  height: 125rpx;
+  margin-right: 27rpx;
+}
+
+.dish-title {
+  color: #c8102e;
+  font-size: 28rpx;
+  max-width:536rpx;
+}
+
+.dish-price {
+  color: #e2973b;
+  font-size: 28rpx;
+}
+
+.dish-tips {
+  color: #552d2d;
+  font-size: 24rpx;
+}
+
+.com-icon {
+  width: 44rpx;
+  height: 44rpx;
+  color: #552d2d;
+}
+
+.quantity {
+  margin: 0 30rpx;
+}
+
+.opacity {
+  opacity: 0.2;
+}

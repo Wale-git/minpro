@@ -1,0 +1,106 @@
+/* pages/finish/finish.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #c8102e;
+  color: #ffffff;
+}
+.bg {
+  width: 100%;
+  height: 686rpx;
+  position: relative;
+}
+.bg image {
+  width: 100%;
+  height: 686rpx;
+}
+.order-status {
+  margin: 37rpx 0 0 41rpx;
+  height: 58rpx;
+}
+.status-img {
+  width: 58rpx;
+  height: 58rpx;
+}
+.status-img .wait {
+  width: 57rpx;
+  height: 57rpx;
+}
+.status-img .success {
+  width: 58rpx;
+  height: 58rpx;
+}
+.status-img .fail {
+  width: 57rpx;
+  height: 57rpx;
+}
+.status-desc {
+  line-height: 58rpx;
+  text-indent: 17rpx;
+  font-size: 45rpx;
+}
+.order-desc {
+  padding: 20rpx 0 0 42rpx;
+  font-size: 26rpx;
+  line-height: 34rpx;
+}
+.order-desc-text {
+  font-size: 42rpx;
+  line-height: 54rpx;
+}
+.order-detail {
+  padding: 35rpx 0 32rpx 0;
+  font-size: 20rpx;
+  line-height: 26rpx;
+  border-bottom: 1rpx solid #e58f9d;
+  height: 100rpx;
+}
+
+.pos-num {
+  background-color: #fff;
+  text-align: center;
+  font-size: 40rpx;
+  color: #c8102e;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 660rpx;
+}
+
+.order-link {
+  height: 85rpx;
+  line-height: 85rpx;
+  border-bottom: 1rpx solid #e58f9d;
+  font-size: 42rpx;
+  text-align: center;
+  color: #e2973b;
+}
+.order-fail-btn {
+  margin: 75rpx auto 0;
+  width: 298rpx;
+  height: 83rpx;
+  line-height: 83rpx;
+  text-align: center;
+  font-size:38rpx;
+  border: 1rpx solid #e58f9d;
+}
+
+.to-home {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 188rpx;
+  height: 78rpx;
+  background-color: rgba(200, 16, 46, 0.6);
+  color: #fff;
+}
+
+.to-home text {
+  font-size: 24rpx;
+}
+
+.to-home image {
+  margin-left: 10rpx;
+  height: 44rpx;
+  width: 51rpx;
+}

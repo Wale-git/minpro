@@ -1,0 +1,54 @@
+<!--pages/me/me.wxml-->
+<view class="container">
+  <image class="bg" src="../../images/me-bg.jpg"></image>
+  <image class="logo" src="../../images/logo2.png"></image>
+
+  <view class="info-box" bindtap="jumpToIndex">
+    <text>开始点餐?</text>
+    <image src="../../images/arrow-right.png"></image>
+  </view>
+
+  <view class="options">
+    <view class="option flex">
+      <view class="empty flex-1"></view>
+      <view class="icon">
+        <image class="icon-order" src="../../images/me-order.png"></image>
+      </view>
+      <view class="text" bindtap="jumpToMyOrder">我的订单</view>
+      <image class="arrow" src="../../images/arrow-right2.png"></image>
+    </view>
+    <view class="option flex">
+      <view class="empty flex-1"></view>
+      <view class="icon">
+        <image class="icon-card" src="../../images/me-card.png"></image>
+      </view>
+      <view class="text" catchtap='toMini' data-param='coupon'>我的券包</view>
+      <image class="arrow" src="../../images/arrow-right2.png"></image>
+    </view>
+    <view class="option flex">
+      <view class="empty flex-1"></view>
+      <view class="icon">
+        <image class="icon-credits" src="../../images/me-credits.png"></image>
+      </view>
+      <view class="text" catchtap='toMini' data-param='point'>我的积分</view>
+      <image class="arrow" src="../../images/arrow-right2.png"></image>
+    </view>
+    <!-- <view class="option flex">
+      <view class="empty flex-1"></view>
+      <view class="icon">
+        <image class="icon-address" src="../../images/me-address.png"></image>
+      </view>
+      <view class="text">我的地址</view>
+      <image class="arrow" src="../../images/arrow-right2.png"></image>
+    </view> -->
+    <view class="option flex">
+      <view class="empty flex-1"></view>
+      <view class="icon">
+        <image class="icon-person" src="../../images/me-person.png"></image>
+      </view>
+      <view class="text" catchtap='toMini' data-param='member_info'>会员中心</view>
+      <image class="arrow" src="../../images/arrow-right2.png"></image>
+    </view>
+  </view>
+</view>
+<include src="../../common/templates/common.wxml" />

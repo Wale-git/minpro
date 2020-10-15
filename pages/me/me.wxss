@@ -1,0 +1,102 @@
+/* pages/me/me.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+}
+.bg {
+  position: absolute;
+  width: 550rpx;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.logo {
+  position: absolute;
+  width: 331rpx;
+  height: 321rpx;
+  top: 12.1%;
+  right: 550rpx;
+  margin-right: -166rpx;
+  z-index: 2;
+}
+.info-box {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding:0 50rpx 0 5rpx;
+  position: absolute;
+  top: 22rpx;
+  right: 32rpx;
+  z-index: 2;
+  color: #ffffff;
+  border-bottom: 2rpx solid #ffffff;
+  font-size: 34rpx;
+}
+.info-box image {
+  position: absolute;
+  top: 15rpx;
+  right: 5rpx;
+  height: 30rpx;
+  width: 30rpx;
+}
+.options {
+  position: absolute;
+  bottom: 80rpx;
+  width: 100%;
+  z-index: 2;
+}
+.option {
+  position: relative;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 16rpx;
+  background-color: rgba(200, 16, 46, .8);
+  font-size: 38rpx;
+  color: #ffffff;
+}
+.option .empty {
+  background: #ffffff;
+}
+.option .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104rpx;
+  background: #ffffff;
+
+}
+.icon-order {
+  width: 40rpx;
+  height: 44rpx;
+}
+.icon-card {
+  width: 41rpx;
+  height: 33rpx;
+}
+.icon-credits {
+  width: 40rpx;
+  height: 38rpx;
+}
+.icon-address {
+  width: 29rpx;
+  height: 41rpx;
+}
+.icon-person {
+  width: 41rpx;
+  height: 41rpx;
+}
+
+.option .text {
+  width: 550rpx;
+  box-sizing: border-box;
+  padding-left: 34rpx;
+}
+.option .arrow {
+  position: absolute;
+  top: 19rpx;
+  right: 32rpx;
+  width: 27rpx;
+  height: 52rpx;
+}
